@@ -1,7 +1,7 @@
 class Contact < ApplicationRecord
   validates :name, presence: true
-  validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
-  validates :cpf, presence: true
+  validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }, uniqueness: true
+  validates :cpf, presence: true, uniqueness: true
   validates :address, presence: true
   validates :city, presence: true
   validates :state, presence: true
