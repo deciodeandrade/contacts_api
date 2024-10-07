@@ -16,6 +16,8 @@ gem 'devise_token_auth'
 
 gem 'cpf_cnpj', '~> 0.2.1'
 
+gem 'will_paginate', '~> 3.1'
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 

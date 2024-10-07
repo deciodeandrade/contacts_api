@@ -2,7 +2,10 @@ class ContactsController < ApiController
   before_action :set_contact, only: [:show, :update, :destroy]
 
   def index
-    @contacts = current_user.contacts.order(name: :asc)
+    @contacts = current_user.contacts
+                            .paginate(page: params[:page], per_page: params[:per_page])
+                            .order(name: :asc)
+
     render json: @contacts
   end
 
