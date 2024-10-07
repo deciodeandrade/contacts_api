@@ -10,6 +10,8 @@ class Contact < ApplicationRecord
 
   validate :valid_cpf_format
 
+  scope :search, -> query { where("name ILIKE :query OR cpf ILIKE :query", query: "%#{query}%") if query.present? }
+
   private
 
   def valid_cpf_format

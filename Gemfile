@@ -18,6 +18,8 @@ gem 'cpf_cnpj', '~> 0.2.1'
 
 gem 'will_paginate', '~> 3.1'
 
+gem 'has_scope', '~> 0.8.0'
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 
