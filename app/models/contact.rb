@@ -5,7 +5,6 @@ class Contact < ApplicationRecord
   validates :name, presence: true
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }, uniqueness: { scope: :user_id }
   validates :cpf, presence: true, uniqueness: { scope: :user_id }
-  validates :address, presence: true
   validates :city, presence: true
   validates :state, presence: true
 
