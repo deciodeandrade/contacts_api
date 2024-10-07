@@ -2,7 +2,7 @@ class ContactsController < ApiController
   before_action :set_contact, only: [:show, :update, :destroy]
 
   def index
-    @contacts = current_user.contacts
+    @contacts = current_user.contacts.order(name: :asc)
     render json: @contacts
   end
 
