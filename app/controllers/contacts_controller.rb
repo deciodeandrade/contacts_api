@@ -2,7 +2,7 @@ class ContactsController < ApiController
   before_action :set_contact, only: [:show, :update, :destroy]
 
   def index
-    @contacts = Contact.all
+    @contacts = current_user.contacts
     render json: @contacts
   end
 
@@ -11,7 +11,7 @@ class ContactsController < ApiController
   end
 
   def create
-    @contact = Contact.new(contact_params)
+    @contact = current_user.contacts.new(contact_params)
     if @contact.save
       render json: @contact, status: :created
     else
@@ -35,7 +35,7 @@ class ContactsController < ApiController
   private
 
   def set_contact
-    @contact = Contact.find(params[:id])
+    @contact = current_user.contacts.find(params[:id])
   end
 
   def contact_params
