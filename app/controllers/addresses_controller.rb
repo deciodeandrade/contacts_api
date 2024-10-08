@@ -1,5 +1,5 @@
 # app/controllers/addresses_controller.rb
-class AddressesController < ApplicationController
+class AddressesController < ApiController
   def search_by_cep
     cep = params[:cep]
     address_data = ViaCepService.fetch_address(cep)
