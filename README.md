@@ -1,21 +1,21 @@
 # Contacts API
 
-This is a RESTful API for managing contacts, built with Ruby on Rails. It allows users to create, read, update, and delete contact information, along with address management.
+Esta é uma API RESTful para gerenciar contatos, construída com Ruby on Rails. Ela permite que os usuários criem, leiam, atualizem e excluam informações de contato, juntamente com o gerenciamento de endereços.
 
-## Ruby Version
+## Versão do Ruby
 
-This application is built with Ruby 3.2.0.
+Esta aplicação foi construída com Ruby 3.2.0.
 
-## System Dependencies
+## Dependências do Sistema
 
 - Ruby 3.2.0
 - Rails 7.0.8.4
 - PostgreSQL (or your preferred database)
 - Bundler
 
-## Configuration
+## Configuração
 
-1. **Clone the repository:**
+1. **Clone o repositório::**
 
    ```bash
    git clone https://github.com/deciodeandrade/contacts_api.git
