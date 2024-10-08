@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   get "home" => "home#index"
 
   resources :contacts
+
+  get 'addresses/search_by_cep', to: 'addresses#search_by_cep'
 end
