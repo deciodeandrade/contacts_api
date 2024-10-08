@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   resources :contacts
 
   get 'addresses/search_by_cep', to: 'addresses#search_by_cep'
+  get 'addresses/suggestions', to: 'addresses#suggestions'
 end
