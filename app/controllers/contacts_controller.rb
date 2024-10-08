@@ -63,10 +63,8 @@ class ContactsController < ApiController
 
   def set_contact
     @contact = current_user.contacts.includes(:address).find_by(id: params[:id])
-    # O render não é chamado aqui. A verificação é feita nas ações.
   end
 
-  # Parâmetros permitidos para criar/atualizar contato e endereço
   def contact_params
     params.require(:contact).permit(:name, :email, :cpf, address_attributes: [:street, :number, :complement, :neighborhood, :city, :state, :cep])
   end
