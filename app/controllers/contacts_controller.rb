@@ -13,12 +13,16 @@ class ContactsController < ApiController
   end
 
   def show
-    render json: @contact, include: :address
+    if @contact
+      render json: @contact, include: :address
+    else
+      render json: { message: 'Contact not found' }, status: :not_found
+    end
   end
 
   def create
     @contact = current_user.contacts.new(contact_params)
-  
+
     # Obtém as coordenadas via GoogleMapsService
     if set_latitude_longitude(@contact.address)
       if @contact.save
@@ -32,25 +36,34 @@ class ContactsController < ApiController
   end
 
   def update
-    if @contact.update(contact_params)
-      # Atualiza a latitude e longitude ao atualizar o endereço
-      set_latitude_longitude(@contact.address)
+    if @contact
+      if @contact.update(contact_params)
+        # Atualiza a latitude e longitude ao atualizar o endereço
+        set_latitude_longitude(@contact.address)
 
-      render json: @contact, include: :address
+        render json: @contact, include: :address
+      else
+        render json: @contact.errors, status: :unprocessable_entity
+      end
     else
-      render json: @contact.errors, status: :unprocessable_entity
+      render json: { message: 'Contact not found' }, status: :not_found
     end
   end
 
   def destroy
-    @contact.destroy
-    head :no_content
+    if @contact
+      @contact.destroy
+      head :no_content
+    else
+      render json: { message: 'Contact not found' }, status: :not_found
+    end
   end
 
   private
 
   def set_contact
-    @contact = current_user.contacts.includes(:address).find(params[:id])
+    @contact = current_user.contacts.includes(:address).find_by(id: params[:id])
+    # O render não é chamado aqui. A verificação é feita nas ações.
   end
 
   # Parâmetros permitidos para criar/atualizar contato e endereço
@@ -61,9 +74,9 @@ class ContactsController < ApiController
   # Define latitude e longitude para o endereço usando GoogleMapsService
   def set_latitude_longitude(address)
     full_address = "#{address.street}, #{address.number}, #{address.neighborhood}, #{address.city}, #{address.state}, #{address.cep}"
-    
+
     coordinates = GoogleMapsService.fetch_lat_long(full_address, ENV['GOOGLE_MAPS_API_KEY'])
-  
+
     if coordinates[:error].nil?
       address.latitude = coordinates[:latitude]
       address.longitude = coordinates[:longitude]
