@@ -1,24 +1,22 @@
-# README
+# Contacts API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a RESTful API for managing contacts, built with Ruby on Rails. It allows users to create, read, update, and delete contact information, along with address management.
 
-Things you may want to cover:
+## Ruby Version
 
-* Ruby version
+This application is built with Ruby 3.2.0.
 
-* System dependencies
+## System Dependencies
 
-* Configuration
+- Ruby 3.2.0
+- Rails 7.0.8.4
+- PostgreSQL (or your preferred database)
+- Bundler
 
-* Database creation
+## Configuration
 
-* Database initialization
+1. **Clone the repository:**
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+   ```bash
+   git clone https://github.com/deciodeandrade/contacts_api.git
+   cd contacts_api
