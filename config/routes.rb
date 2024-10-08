@@ -7,6 +7,10 @@ Rails.application.routes.draw do
 
   resources :contacts
 
-  get 'addresses/search_by_cep', to: 'addresses#search_by_cep'
-  get 'addresses/suggestions', to: 'addresses#suggestions'
+  resources :addresses, only: [] do
+    collection do
+      get 'search_by_cep'
+      get 'suggestions'
+    end
+  end
 end
