@@ -10,26 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_10_07_185028) do
+ActiveRecord::Schema[7.0].define(version: 2024_10_08_123603) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "street"
+    t.string "number"
+    t.string "complement"
+    t.string "neighborhood"
+    t.string "city"
+    t.string "state"
+    t.string "cep"
+    t.float "latitude"
+    t.float "longitude"
+    t.bigint "contact_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contact_id"], name: "index_addresses_on_contact_id"
+  end
 
   create_table "contacts", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "cpf"
-    t.string "city"
-    t.string "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
-    t.string "street"
-    t.string "number"
-    t.string "complement"
-    t.string "neighborhood"
-    t.string "cep"
-    t.float "latitude"
-    t.float "longitude"
     t.index ["user_id"], name: "index_contacts_on_user_id"
   end
 
@@ -58,5 +65,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_07_185028) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "addresses", "contacts"
   add_foreign_key "contacts", "users"
 end

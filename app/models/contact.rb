@@ -1,12 +1,13 @@
 class Contact < ApplicationRecord
 
   belongs_to :user
+  has_one :address, dependent: :destroy
+
+  accepts_nested_attributes_for :address
 
   validates :name, presence: true
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }, uniqueness: { scope: :user_id }
   validates :cpf, presence: true, uniqueness: { scope: :user_id }
-  validates :city, presence: true
-  validates :state, presence: true
 
   validate :valid_cpf_format
 
