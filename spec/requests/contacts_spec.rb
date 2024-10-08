@@ -84,7 +84,7 @@ RSpec.describe "Contacts API", type: :request do
       it 'returns status code 404' do
         get "/contacts/9999", headers: auth_headers
         expect(response).to have_http_status(:not_found)
-        expect(json['message']).to match(/Contact not found/)
+        expect(json['message']).to match(/Contato não encontrado/)
       end
     end
 

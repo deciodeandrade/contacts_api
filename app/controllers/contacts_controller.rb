@@ -16,7 +16,7 @@ class ContactsController < ApiController
     if @contact
       render json: @contact, include: :address
     else
-      render json: { message: 'Contact not found' }, status: :not_found
+      render json: { message: 'Contato não encontrado' }, status: :not_found
     end
   end
 
@@ -46,7 +46,7 @@ class ContactsController < ApiController
         render json: @contact.errors, status: :unprocessable_entity
       end
     else
-      render json: { message: 'Contact not found' }, status: :not_found
+      render json: { message: 'Contato não encontrado' }, status: :not_found
     end
   end
 
@@ -55,7 +55,7 @@ class ContactsController < ApiController
       @contact.destroy
       head :no_content
     else
-      render json: { message: 'Contact not found' }, status: :not_found
+      render json: { message: 'Contato não encontrado' }, status: :not_found
     end
   end
 
